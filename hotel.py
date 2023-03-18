@@ -36,7 +36,9 @@ class HotelManagementSystem:
         lbl_menu=Label(main_frame,text="MENU",font=("Times New Roman",20,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
         lbl_menu.place(x=0,y=0,width=230)
 
-
+        ##btn frame##
+        btn_frame=Frame(main_frame,bd=4,relief=RIDGE)
+        btn_frame.place(x=0,y=35,width=228,height=190)
 
 
 if __name__=="__main__":

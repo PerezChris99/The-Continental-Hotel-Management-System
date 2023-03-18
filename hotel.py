@@ -24,7 +24,9 @@ class HotelManagementSystem:
         Ibling=Label(self.root,image=self.photoimg2,bd=4,relief=RIDGE)
         Ibling.place(x=0,y=0, width=230,height=140)
 
-
+        ###title####
+        lbl_title=Label(self.root,text="CONTINENTAL HOTEL MGT SYS",font=("Times New Roman",40,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
+        lbl_title.place(x=0,y=140,width=1550,height=50)
 
 
 

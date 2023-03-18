@@ -28,6 +28,15 @@ class HotelManagementSystem:
         lbl_title=Label(self.root,text="CONTINENTAL HOTEL MGT SYS",font=("Times New Roman",40,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
         lbl_title.place(x=0,y=140,width=1550,height=50)
 
+        ##main frame##
+        main_frame=Frame(self.root,bd=4,relief=RIDGE)
+        main_frame.place(x=0,y=190,width=1550,height=620)
+
+        ######menu######
+        lbl_menu=Label(main_frame,text="MENU",font=("Times New Roman",20,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
+        lbl_menu.place(x=0,y=0,width=230)
+
+
 
 
 if __name__=="__main__":

@@ -74,6 +74,12 @@ class Cust_Win:
         lblIdproof=Label(labelframeleft,font=("arial",12,"bold"),text="Id Proof Type:",padx=2,pady=6)
         lblIdProof.grid(row=8,column=0,sticky=W)
 
+        #id number
+        lblIdNumber=Label(labelframeleft,font=("arial",12,"bold"),text="Id Number:",padx=2,pady=6)
+        lblIdNumber.grid(row=9,column=0,sticky=W)
+        txtIdNumber=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtIdNumber.grid(row=9,column=1)
+
         
 
 

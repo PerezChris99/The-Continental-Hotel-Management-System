@@ -6,7 +6,7 @@ class Cust_Win:
     def __init__(self,root):
         self.root = root
         self.root.title("Hotel Management System")
-        self.root.geometry("1295x550+230+220")
+        self.root.geometry("1285x540+220+210")
 
         ###title####
         lbl_title=Label(self.root,text="ADD CUSTOMER DETAILS",font=("Times New Roman",18,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
@@ -14,11 +14,11 @@ class Cust_Win:
 
         ####logo####
         img2=Image.open(r"images/logo.jpg")
-        img2=img2.resize((230, 140),Image.ANTIALIAS)
+        img2=img2.resize((100, 50),Image.ANTIALIAS)
         self.photoimg2=ImageTk.PhotoImage(img2)
 
-        Ibling=Label(self.root,image=self.photoimg2,bd=4,relief=RIDGE)
-        Ibling.place(x=0,y=0, width=230,height=140)
+        Ibling=Label(self.root,image=self.photoimg2,bd=0,relief=RIDGE)
+        Ibling.place(x=5,y=2, width=100,height=50)
 
 
 

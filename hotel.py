@@ -72,12 +72,12 @@ class HotelManagementSystem:
         Ibling=Label(main_frame,image=self.photoimg4,bd=4,relief=RIDGE)
         Ibling.place(x=0,y=255, width=230,height=210)
 
-        img5=Image.open(r"images/lower1.jpg")
-        img5=img5.resize((230, 190),Image.ANTIALIAS)
-        self.photoimg5=ImageTk.PhotoImage(img5)
+#        img5=Image.open(r"images/lower1.jpg")
+#        img5=img5.resize((230, 190),Image.ANTIALIAS)
+#        self.photoimg5=ImageTk.PhotoImage(img5)
 
-        Ibling=Label(main_frame,image=self.photoimg5,bd=4,relief=RIDGE)
-        Ibling.place(x=0,y=420, width=230,height=190)
+#        Ibling=Label(main_frame,image=self.photoimg5,bd=4,relief=RIDGE)
+#        Ibling.place(x=0,y=420, width=230,height=190)
 
 
 

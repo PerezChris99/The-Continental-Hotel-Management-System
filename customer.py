@@ -80,6 +80,11 @@ class Cust_Win:
         txtIdNumber=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
         txtIdNumber.grid(row=9,column=1)
 
+        # address
+        lblAddress=Label(labelframeleft,font=("arial",12,"bold"),text="Address:",padx=2,pady=6)
+        lblAddress.grid(row=10,column=0,sticky=W)
+        txtAddress=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtAddress.grid(row=10,column=1)
         
 
 

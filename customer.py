@@ -43,6 +43,10 @@ class Cust_Win:
         txtmname=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width="29")
         txtmname.grid(row=2,column=1)
 
+        #gender combobox
+        label_gender=Label(labelframeleft,font=("arial",12,"bold"),text="Gender:",padx=2,pady=6)
+        label_gender.grid(row=3,column=0,sticky=W)
+
         
 
 

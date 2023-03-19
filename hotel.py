@@ -64,6 +64,24 @@ class HotelManagementSystem:
         Ibling1.place(x=225,y=0, width=1310,height=590)
 
 
+        ##lower images##
+        img4=Image.open(r"images/lower1.jpg")
+        img4=img4.resize((230, 210),Image.ANTIALIAS)
+        self.photoimg2=ImageTk.PhotoImage(img4)
+
+        Ibling=Label(self.root,image=self.photoimg4,bd=4,relief=RIDGE)
+        Ibling.place(x=0,y=225, width=230,height=210)
+
+        img5=Image.open(r"images/lower2.jpg")
+        img5=img5.resize((230, 190),Image.ANTIALIAS)
+        self.photoimg5=ImageTk.PhotoImage(img5)
+
+        Ibling=Label(self.root,image=self.photoimg5,bd=4,relief=RIDGE)
+        Ibling.place(x=0,y=420, width=230,height=190)
+
+
+
+
 if __name__=="__main__":
     root=Tk()
     obj=HotelManagementSystem(root)

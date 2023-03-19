@@ -47,7 +47,22 @@ class Cust_Win:
         label_gender=Label(labelframeleft,font=("arial",12,"bold"),text="Gender:",padx=2,pady=6)
         label_gender.grid(row=3,column=0,sticky=W)
 
+        #postcode
+        lblPostCode=Label(labelframeleft,font=("arial",12,"bold"),text="PostCode:",padx=2,pady=6)
+        lblPostCode.grid(row=4,column=0,sticky=W)
+        txtPostCode=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtPostCode.grid(row=4,column=1)
+
+        #mobilenumber
+        lblMobile=Label(labelframeleft,font=("arial",12,"bold"),text="Mobile:",padx=2,pady=6)
+        lblMobile.grid(row=5,column=0,sticky=W)
+        txtMobile=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtMobile.grid(row=5,column=1)
+
         
+
+
+
 
 
 if __name__ == "__main__":

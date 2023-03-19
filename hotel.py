@@ -40,6 +40,8 @@ class HotelManagementSystem:
         btn_frame=Frame(main_frame,bd=4,relief=RIDGE)
         btn_frame.place(x=0,y=35,width=228,height=190)
 
+        cust_btn=Button(btn_frame,text="CUSTOMER",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd="0",relief=RIDGE)
+        cust_btn.grid(row=0,column=0)
 
 if __name__=="__main__":
     root=Tk()

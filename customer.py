@@ -36,6 +36,13 @@ class Cust_Win:
         cname.grid(row=1,column=0,sticky=W)
         txtcname=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
         txtname.grid(row=1,column=1)
+
+        #mother name
+        lblmname=Label(labelframeleft,font=("arial",13,"bold"),text="Mother Name:",padx=2,pady=6)
+        lblmname.grid(row=2,column=0,sticky=W)
+        txtmname=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width="29")
+        txtmname.grid(row=2,column=1)
+
         
 
 

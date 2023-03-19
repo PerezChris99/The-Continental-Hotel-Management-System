@@ -24,6 +24,10 @@ class Cust_Win:
         labelframeleft=LabelFrame(self.root,bd=2,relief=RIDGE,text="Customer Details",font=("times new roman",12,"bold"),padx=2,)
         labelframeleft.place(x=5,y=50,width=425,height=490)
 
+        ####labels and entry###
+        lbl_cust_ref=Label(labelframeleft,text="Customer Ref",font=("times new roman",12,"bold"),padx=2,pady=6)
+        lbl_cust_ref.grid(row=0,column=0)
+        
 
 if __name__ == "__main__":
     root=Tk()

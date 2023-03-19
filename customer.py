@@ -59,6 +59,12 @@ class Cust_Win:
         txtMobile=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
         txtMobile.grid(row=5,column=1)
 
+        #email
+        lblEmail=Label(labelframeleft,font=("arial",12,"bold"),text="Email:",padx=2,pady=6)
+        lblEmail.grid(row=6,column=0,sticky=W)
+        txtEmail=ttk.Entry(labelfromleft,font=("arial",13,"bold"),width=29)
+        txtEmail.grid(row=6,column=1)
+
         
 
 

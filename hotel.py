@@ -41,7 +41,28 @@ class HotelManagementSystem:
         btn_frame.place(x=0,y=35,width=228,height=190)
 
         cust_btn=Button(btn_frame,text="CUSTOMER",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd="0",relief=RIDGE)
-        cust_btn.grid(row=0,column=0)
+        cust_btn.grid(row=0,column=0,pady=1)
+
+        room_btn=Button(btn_frame,text="ROOM",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd="0",relief=RIDGE)
+        room_btn.grid(row=1,column=0,pady=1)
+
+        details_btn=Button(btn_frame,text="DETAILS",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd="0",relief=RIDGE)
+        details_btn.grid(row=2,column=0,pady=1)
+
+        report_btn=Button(btn_frame,text="REPORT",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd="0",relief=RIDGE)
+        report_btn.grid(row=3,column=0,pady=1)
+
+        logout_btn=Button(btn_frame,text="LOGOUT",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd="0",relief=RIDGE)
+        logout_btn.grid(row=4,column=0,pady=1)
+
+        ###right side logo###
+        img3=Image.open(r"images/logo2.jpg")
+        img3=img3.resize((1310, 590),Image.ANTIALIAS)
+        self.photoimg3=ImageTk.PhotoImage(img3)
+
+        Ibling1=Label(self.root,image=self.photoimg3,bd=4,relief=RIDGE)
+        Ibling1.place(x=225,y=0, width=1310,height=590)
+
 
 if __name__=="__main__":
     root=Tk()

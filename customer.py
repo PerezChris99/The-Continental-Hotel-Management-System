@@ -25,6 +25,7 @@ class Cust_Win:
         labelframeleft.place(x=5,y=50,width=425,height=490)
 
         ####labels and entry###
+        #cust ref##
         lbl_cust_ref=Label(labelframeleft,text="Customer Ref",font=("times new roman",12,"bold"),padx=2,pady=6)
         lbl_cust_ref.grid(row=0,column=0,sticky=W)
 
@@ -65,7 +66,16 @@ class Cust_Win:
         txtEmail=ttk.Entry(labelfromleft,font=("arial",13,"bold"),width=29)
         txtEmail.grid(row=6,column=1)
 
+        #nationality
+        lbNationality=Label(labelframeleft,font=("arial",12,"bold"),text="Nationality:",padx=2,pady=6)
+        lblNationality.grid(row=7,column=0,sticky=W)
+
+        #idproof type combobox
+        lblIdproof=Label(labelframeleft,font=("arial",12,"bold"),text="Id Proof Type:",padx=2,pady=6)
+        lblIdProof.grid(row=8,column=0,sticky=W)
+
         
+
 
 
 

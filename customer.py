@@ -1,6 +1,6 @@
 from tkinter import*
 from PIL import Image,ImageTk
-
+from tkinter import ttk
 
 class Cust_Win:
     def __init__(self,root):
@@ -26,8 +26,18 @@ class Cust_Win:
 
         ####labels and entry###
         lbl_cust_ref=Label(labelframeleft,text="Customer Ref",font=("times new roman",12,"bold"),padx=2,pady=6)
-        lbl_cust_ref.grid(row=0,column=0)
+        lbl_cust_ref.grid(row=0,column=0,sticky=W)
+
+        entry_ref=ttk.Entry(labelframeleft,width=22,font=("times new roman",12,"bold"))
+        entry_ref.grid(row=0,column=1)
+
+        #cust name
+        cname=Label(labelframeleft,font=("arial",12,"bold"),text="Customer Name:",padx=2,pady=6)
+        cname.grid(row=1,column=0,sticky=W)
+        txtcname=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtname.grid(row=1,column=1)
         
+
 
 if __name__ == "__main__":
     root=Tk()

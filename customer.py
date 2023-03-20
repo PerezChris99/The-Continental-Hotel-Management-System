@@ -143,11 +143,31 @@ class Cust_Win:
         details_table=Frame(Table_Frame,bd=2,relief=RIDGE)
         details_table.place(x=0,y=50,width=860,height=350)
 
-        
+        scroll_x=ttk.Scrollbar(details_table,orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(details_table,orient=VERTICAL)
 
+        self.Cust_Details_Table=ttk.Treeview(details_table,column=("ref","name","mother","gender","post","mobile",
+            "email","nationality","idproof","idnumber","address"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        scroll_x.pack(side=BOTTOM,fill=X)
+        scroll_y.pack(side=RIGHT,fill=Y)
 
+        scroll_x.config(command=self.Cust_Details_Table.xview)
+        scroll_y.config(command=self.Cust_Details_Table.yview)
 
+        self.Cust_Details_Table.heading("ref",text="Refer No")
+        self.Cust_Details_Table.heading("name",text="Name")
+        self.Cust_Details_Table.heading("mother",text="Mother Name")
+        self.Cust_Details_Table.heading("gender",text="Gender")
+        self.Cust_Details_Table.heading("post",text="Post Code")
+        self.Cust_Details_Table.heading("mobile",text="Mobile")
+        self.Cust_Details_Table.heading("email",text="Email")
+        self.Cust_Details_Table.heading("nationality",text="Nationality")
+        self.Cust_Details_Table.heading("idproof",text="Id Proof")
+        self.Cust_Details_Table.heading("idnumber",text="Id Number")
+        self.Cust_Details_Table.heading("address",text="Address")
 
+        self.Cust_Details_Table["show"]="headings"
+        self.Cust_Details_Table.pack(fill=BOTH,expand=1)
 
 
 if __name__ == "__main__":

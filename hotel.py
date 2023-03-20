@@ -83,6 +83,10 @@ class HotelManagementSystem:
         self.new_window=Toplevel(self.root)
         self.app=Cust_Win(self.new_window)
 
+        
+
+
+
 if __name__=="__main__":
     root=Tk()
     obj=HotelManagementSystem(root)

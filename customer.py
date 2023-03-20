@@ -26,20 +26,21 @@ class Cust_Win:
 
         ####labels and entry###
         #cust ref##
-        lbl_cust_ref=Label(labelframeleft,text="Customer Ref",font=("times new roman",12,"bold"),padx=2,pady=6)
+        lbl_cust_ref=Label(labelframeleft,text="Customer Ref",font=("arial",12,"bold"),padx=2,pady=6)
         lbl_cust_ref.grid(row=0,column=0,sticky=W)
 
-        entry_ref=ttk.Entry(labelframeleft,width=22,font=("times new roman",12,"bold"))
+        entry_ref=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
         entry_ref.grid(row=0,column=1)
 
         #cust name
-        cname=Label(labelframeleft,font=("arial",12,"bold"),text="Customer Name:",padx=2,pady=6)
+        cname=Label(labelframeleft,font=("arial",12,"bold"),text="Customer Name",padx=2,pady=6)
         cname.grid(row=1,column=0,sticky=W)
+
         txtcname=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
-        txtname.grid(row=1,column=1)
+        txtcname.grid(row=1,column=1)
 
         #mother name
-        lblmname=Label(labelframeleft,font=("arial",13,"bold"),text="Mother Name:",padx=2,pady=6)
+        lblmname=Label(labelframeleft,font=("arial",12,"bold"),text="Mother Name:",padx=2,pady=6)
         lblmname.grid(row=2,column=0,sticky=W)
         txtmname=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width="29")
         txtmname.grid(row=2,column=1)
@@ -47,7 +48,10 @@ class Cust_Win:
         #gender combobox
         label_gender=Label(labelframeleft,font=("arial",12,"bold"),text="Gender:",padx=2,pady=6)
         label_gender.grid(row=3,column=0,sticky=W)
-
+        combo_gender=ttk.Combobox(labelframeleft,font=("arial",12,"bold"),width=27)
+        combo_gender["value"]=("Male","Female")
+        combo_gender.grid(row=3, column=1)
+        
         #postcode
         lblPostCode=Label(labelframeleft,font=("arial",12,"bold"),text="PostCode:",padx=2,pady=6)
         lblPostCode.grid(row=4,column=0,sticky=W)

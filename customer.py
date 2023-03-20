@@ -201,6 +201,7 @@ class Cust_Win:
         self.Cust_Details_Table.column("address",width=100)
 
         self.Cust_Details_Table.pack(fill=BOTH,expand=1)
+        self.fetch_data()
 
     def add_data(self):
         if self.var_mobile.get()=="" or self.var_mother.get()=="":
@@ -222,10 +223,26 @@ class Cust_Win:
                                                                             self.var_address.get()
                                                                                                 ))
                 conn.commit()
+                self.fetch_data()
                 conn.close()
                 messagebox.showinfo("success","customer has been added",parent=self.root)
             except Exception as es:
                 messagebox.showwarning("Warning",f"Something went wrong:{str(es)}",parent=self.root)
+    
+    def fetch_data(self):
+        conn=mysql.connector.connect(host="localhost",username="root",passwords="Test@123",database="continental")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select + from customer")
+        rows=my_cursor.fetchall()
+        if len(rows)!=0:
+            self.Cust_Details_Table.delete(*self.Cust_Details_Table.get_children())
+            for i in rows:
+                self.Cust_Details_Table.insert("",END,values=i)
+            conn.commit()
+        connclose()
+
+
+
 
 
 if __name__ == "__main__":

@@ -105,7 +105,23 @@ class Cust_Win:
         ###btns####
         btn_frame=frame(labelframeleft,bd=2,relief=RIDGE)
         btn_frame.place(x=0,y=400,width=412,height=40)
+
+        btnAdd=Button(btn_frame,text="Add",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnAdd.grid(row=0,column=0,padx=1)
+
+        btnUpdate=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnUpdate.grid(row=0,column=1,padx=1)
+
+        btnDelete=Button(btn_frame,text="Dekete",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnDelete.grid(row=0,column=2,padx=1)
+
+        btnReset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnReset.grid(row=0,column=3,padx=1)
+
         
+
+
+
 
 
 

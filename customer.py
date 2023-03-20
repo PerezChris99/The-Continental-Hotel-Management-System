@@ -122,8 +122,13 @@ class Cust_Win:
         Table_Frame=LabelFrame(self.root,bd=2,relief=RIDGE,text="View Details And Search System",font=("arial",12,"bold"),padx=2)
         Table_Frame.place(x=435,y=50,width=860,height=490)
 
+        lblSearchBy=Label(Table_Frame,font=("arial",12,"bold"),text="Search By:",bg="red",fg="white")
+        lblSearchBy.grid(row=0,column=0,sticky=W)
 
-
+        combo_Search=ttk.Combobox(Table_Frame,font=("arial",12,"bold"),width=27,state="randomly")
+        combo_Search["value"]=("Mobile","Ref")
+        combo_Search.current(0)
+        combo_Search.grid(row=8,column=1)
 
 
 

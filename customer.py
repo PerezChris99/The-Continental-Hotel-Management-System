@@ -1,12 +1,30 @@
 from tkinter import*
 from PIL import Image,ImageTk
 from tkinter import ttk
+import mysql.connector
+import random
 
 class Cust_Win:
     def __init__(self,root):
         self.root = root
         self.root.title("Hotel Management System")
         self.root.geometry("1285x540+220+210")
+
+        ##variables##
+        self.var_ref=StringVar()
+        x=random.randint(1000,9999)
+        self.var_ref.set(str(x))
+
+        self.var_cust_name=StringVar()
+        self.var_mother=StringVar()
+        self.var_gender=StringVar()
+        self.var_post=StringVar()
+        self.var_mobile=StringVar()
+        self.var_email=StringVar()
+        self.var_nationality=StringVar()
+        self.var_address=StringVar()
+        self.var_id_proof=StringVar()
+        self.var_id_number=StringVar()
 
         ###title####
         lbl_title=Label(self.root,text="ADD CUSTOMER DETAILS",font=("Times New Roman",18,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
@@ -181,6 +199,8 @@ class Cust_Win:
         self.Cust_Details_Table.column("address",width=100)
 
         self.Cust_Details_Table.pack(fill=BOTH,expand=1)
+
+    def add_data(self):
 
 
 if __name__ == "__main__":

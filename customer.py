@@ -68,11 +68,11 @@ class Cust_Win:
         #email
         lblEmail=Label(labelframeleft,font=("arial",12,"bold"),text="Email:",padx=2,pady=6)
         lblEmail.grid(row=6,column=0,sticky=W)
-        txtEmail=ttk.Entry(labelfromleft,font=("arial",13,"bold"),width=29)
+        txtEmail=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
         txtEmail.grid(row=6,column=1)
 
         #nationality
-        lbNationality=Label(labelframeleft,font=("arial",12,"bold"),text="Nationality:",padx=2,pady=6)
+        lblNationality=Label(labelframeleft,font=("arial",12,"bold"),text="Nationality:",padx=2,pady=6)
         lblNationality.grid(row=7,column=0,sticky=W)
 
         combo_Nationality=ttk.Combobox(labelframeleft,font=("arial",12,"bold"),width=27,state="readonly")
@@ -82,7 +82,7 @@ class Cust_Win:
 
         #idproof type combobox
         lblIdproof=Label(labelframeleft,font=("arial",12,"bold"),text="Id Proof Type:",padx=2,pady=6)
-        lblIdProof.grid(row=8,column=0,sticky=W)
+        lblIdproof.grid(row=8,column=0,sticky=W)
 
         combo_id=ttk.Combobox(labelframeleft,font=("arial",12,"bold"),width=27,state="readonly")
         combo_id["value"]=("Bank Card","Driving License", "National ID", "Passport", "Other")
@@ -103,7 +103,7 @@ class Cust_Win:
         txtAddress.grid(row=10,column=1)
         
         ###btns####
-        btn_frame=frame(labelframeleft,bd=2,relief=RIDGE)
+        btn_frame=Frame(labelframeleft,bd=2,relief=RIDGE)
         btn_frame.place(x=0,y=400,width=412,height=40)
 
         btnAdd=Button(btn_frame,text="Add",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
@@ -125,10 +125,20 @@ class Cust_Win:
         lblSearchBy=Label(Table_Frame,font=("arial",12,"bold"),text="Search By:",bg="red",fg="white")
         lblSearchBy.grid(row=0,column=0,sticky=W)
 
-        combo_Search=ttk.Combobox(Table_Frame,font=("arial",12,"bold"),width=27,state="randomly")
+        combo_Search=ttk.Combobox(Table_Frame,font=("arial",12,"bold"),width=24,state="randomly")
         combo_Search["value"]=("Mobile","Ref")
         combo_Search.current(0)
         combo_Search.grid(row=8,column=1)
+
+        txtSearch=ttk.Entry(Table_Frame,font=("arial",13,"bold"),width=24)
+        txtSearch.grid(row=0,column=2,padx=2)
+
+        btnSearch=Button(Table_Frame,text="Search",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
+        btnSearch.grid(row=0,column=3,padx=1)
+
+        btnShowAll=Button(Table_Frame,text="Show All",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
+        btnShowAll.grid(row=0,column=4,padx=1)
+
 
 
 

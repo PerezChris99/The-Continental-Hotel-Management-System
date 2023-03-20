@@ -129,7 +129,7 @@ class Cust_Win:
         btnAdd=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnAdd.grid(row=0,column=0,padx=1)
 
-        btnUpdate=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnUpdate=Button(btn_frame,text="Update",command=self.update,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnUpdate.grid(row=0,column=1,padx=1)
 
         btnDelete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
@@ -201,6 +201,7 @@ class Cust_Win:
         self.Cust_Details_Table.column("address",width=100)
 
         self.Cust_Details_Table.pack(fill=BOTH,expand=1)
+        self.Cust_Details_Table.bind("<ButtonRelease-1>",self.get_cursor)
         self.fetch_data()
 
     def add_data(self):
@@ -240,6 +241,48 @@ class Cust_Win:
                 self.Cust_Details_Table.insert("",END,values=i)
             conn.commit()
         connclose()
+
+    def get_cursor(self,event=""):
+        cursor_row=self.Cust_Details_Table.focus()
+        content=self.Cust_Details_Table.item(cursor_row)
+        row=content["values"]
+
+        self.var_ref.set(row[0]),
+        self.var_cust_name.set(row[1]),
+        self.var_mother.set(row[2]),
+        self.var_gender.set(row[3]),
+        self.var_post.set(row[5]),
+        self.var_email.set(row[6]),
+        self.var_nationality.set(row[7]),
+        self.var_id_proof.set(row[8]),
+        self.var_id_number.set(row[9]),
+        self.var_address.set(row[10])
+
+    def update(self):
+        if self.var_mobile.get()=="":
+            messagebox.showerror("Error","Please enter mobile number",parent=self.root)
+        else:
+            conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="management")
+            my_cursor=conn.cursor()
+            my_cursor.execute("update customer set Name=%s,Mother=%s,Gender=%s,PostCode=%s,Mobile=%s,Email=%s,Nationality=%s,Idproof=%s,idnumber=%s,Address=%s,where Ref=%s",(
+                                                                                                                                                        
+                                                                                                                                                        self.var_cust_name.get(),
+                                                                                                                                                        self.var_mother.get(),
+                                                                                                                                                        self.var_gender.get(),
+                                                                                                                                                        self.var_post.get(),
+                                                                                                                                                        self.var_mobile.get(),
+                                                                                                                                                        self.var_nationality.get(),
+                                                                                                                                                        self.var_id_proof.get(),
+                                                                                                                                                        self.var_id_number.get(),
+                                                                                                                                                        self.var_address.get(),
+                                                                                                                                                        self.var_ref.get()
+                                                                                                                                                        ))
+            conn.commit()
+            self.fetch_data()
+            conn.close()
+            messagebox.showinfo("Update","Customer details have been updated successfully")
+
+        
 
 
 

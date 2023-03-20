@@ -2,7 +2,8 @@ from tkinter import*
 from PIL import Image,ImageTk
 from tkinter import ttk
 import random
-import mysql.connector
+#import mysql.connector
+from tkinter import messagebox
 
 
 class Cust_Win:
@@ -48,7 +49,7 @@ class Cust_Win:
         lbl_cust_ref=Label(labelframeleft,text="Customer Ref",font=("arial",12,"bold"),padx=2,pady=6)
         lbl_cust_ref.grid(row=0,column=0,sticky=W)
 
-        entry_ref=ttk.Entry(labelframeleft,textvariable=self.var_ref,font=("arial",13,"bold"),width=29)
+        entry_ref=ttk.Entry(labelframeleft,textvariable=self.var_ref,font=("arial",13,"bold"),width=29,state="readonly")
         entry_ref.grid(row=0,column=1)
 
         #cust name
@@ -103,7 +104,7 @@ class Cust_Win:
         lblIdproof=Label(labelframeleft,font=("arial",12,"bold"),text="Id Proof Type:",padx=2,pady=6)
         lblIdproof.grid(row=8,column=0,sticky=W)
 
-        combo_id=ttk.Combobox(labelframeleft,texvariable=self.var_id_proof,font=("arial",12,"bold"),width=27,state="readonly")
+        combo_id=ttk.Combobox(labelframeleft,textvariable=self.var_id_proof,font=("arial",12,"bold"),width=27,state="readonly")
         combo_id["value"]=("Bank Card","Driving License", "National ID", "Passport", "Other")
         combo_id.current(0)
         combo_id.grid(row=8, column=1)
@@ -118,14 +119,14 @@ class Cust_Win:
         # address
         lblAddress=Label(labelframeleft,font=("arial",12,"bold"),text="Address:",padx=2,pady=6)
         lblAddress.grid(row=10,column=0,sticky=W)
-        txtAddress=ttk.Entry(labelframeleft,textvariables=self.var_address,font=("arial",13,"bold"),width=29)
+        txtAddress=ttk.Entry(labelframeleft,textvariable=self.var_address,font=("arial",13,"bold"),width=29)
         txtAddress.grid(row=10,column=1)
         
         ###btns####
         btn_frame=Frame(labelframeleft,bd=2,relief=RIDGE)
         btn_frame.place(x=0,y=400,width=412,height=40)
 
-        btnAdd=Button(btn_frame,text="Add",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnAdd=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnAdd.grid(row=0,column=0,padx=1)
 
         btnUpdate=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
@@ -201,7 +202,30 @@ class Cust_Win:
 
         self.Cust_Details_Table.pack(fill=BOTH,expand=1)
 
-    #def add_data(self):
+    def add_data(self):
+        if self.var_mobile.get()=="" or self.var_mother.get()=="":
+            messagebox.showerror("Error","All fields are reqired",parent=self.root)
+        else:
+            try:
+                conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="continental")
+                my_cursor=conn.cursor()
+                my_cursor.execute("Insert into customer values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+                                                                            self.var_ref.get(),
+                                                                            self.var_cust_name.get(),
+                                                                            self.var_mother.get(),
+                                                                            self.var_gender.get(),
+                                                                            self.var_post.get(),
+                                                                            self.var_mobile.get(),
+                                                                            self.var_nationality.get(),
+                                                                            self.var_id_proof.get(),
+                                                                            self.var_id_number.get(),
+                                                                            self.var_address.get()
+                                                                                                ))
+                conn.commit()
+                conn.close()
+                messagebox.showinfo("success","customer has been added",parent=self.root)
+            except Exception as es:
+                messagebox.showwarning("Warning",f"Something went wrong:{str(es)}",parent=self.root)
 
 
 if __name__ == "__main__":

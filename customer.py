@@ -128,7 +128,7 @@ class Cust_Win:
         combo_Search=ttk.Combobox(Table_Frame,font=("arial",12,"bold"),width=24,state="randomly")
         combo_Search["value"]=("Mobile","Ref")
         combo_Search.current(0)
-        combo_Search.grid(row=8,column=1)
+        combo_Search.grid(row=0,column=1,padx=2)
 
         txtSearch=ttk.Entry(Table_Frame,font=("arial",13,"bold"),width=24)
         txtSearch.grid(row=0,column=2,padx=2)
@@ -139,6 +139,11 @@ class Cust_Win:
         btnShowAll=Button(Table_Frame,text="Show All",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
         btnShowAll.grid(row=0,column=4,padx=1)
 
+        #===show data table====#
+        details_table=Frame(Table_Frame,bd=2,relief=RIDGE)
+        details_table.place(x=0,y=50,width=860,height=350)
+
+        
 
 
 

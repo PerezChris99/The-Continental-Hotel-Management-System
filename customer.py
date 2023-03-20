@@ -132,7 +132,7 @@ class Cust_Win:
         btnUpdate=Button(btn_frame,text="Update",command=self.update,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnUpdate.grid(row=0,column=1,padx=1)
 
-        btnDelete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnDelete=Button(btn_frame,text="Delete",command=self.mDelete,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnDelete.grid(row=0,column=2,padx=1)
 
         btnReset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
@@ -280,10 +280,22 @@ class Cust_Win:
             conn.commit()
             self.fetch_data()
             conn.close()
-            messagebox.showinfo("Update","Customer details have been updated successfully")
-
-        
-
+            messagebox.showinfo("Update","Customer details have been updated successfully",parent=self.root)
+    
+    def mDelete(self):
+        mDelete=messagebox.askyesno("Hotel Management System","Do you want to delete this customer",parent=self.root)
+        if mDelete>0:
+            conn=mysql.connector.connect(hosts="localhost",username="root",password="Test@123",database="management")
+            my_cursor=conn.cursor()
+            query="delete from customer Ref=%s"
+            value=(self.var_ref.get(),)
+            my_cursor.execute(query,value)
+        else:
+            if not mDelete:
+                return
+        conn.commit()
+        self.fetch_data()
+        conn.close()
 
 
 

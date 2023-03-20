@@ -167,6 +167,19 @@ class Cust_Win:
         self.Cust_Details_Table.heading("address",text="Address")
 
         self.Cust_Details_Table["show"]="headings"
+
+        self.Cust_Details_Table.column("ref",width=100)
+        self.Cust_Details_Table.column("name",width=100)
+        self.Cust_Details_Table.column("mother",width=100)
+        self.Cust_Details_Table.column("gender",width=100)
+        self.Cust_Details_Table.column("post",width=100)
+        self.Cust_Details_Table.column("mobile",width=100)
+        self.Cust_Details_Table.column("email",width=100)
+        self.Cust_Details_Table.column("nationality",width=100)
+        self.Cust_Details_Table.column("idproof",width=100)
+        self.Cust_Details_Table.column("idnumber",width=100)
+        self.Cust_Details_Table.column("address",width=100)
+
         self.Cust_Details_Table.pack(fill=BOTH,expand=1)
 
 

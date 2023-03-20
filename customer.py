@@ -135,7 +135,7 @@ class Cust_Win:
         btnDelete=Button(btn_frame,text="Delete",command=self.mDelete,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnDelete.grid(row=0,column=2,padx=1)
 
-        btnReset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnReset=Button(btn_frame,text="Reset",command=self.reset,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnReset.grid(row=0,column=3,padx=1)
 
         #===table frame===
@@ -145,18 +145,20 @@ class Cust_Win:
         lblSearchBy=Label(Table_Frame,font=("arial",12,"bold"),text="Search By:",bg="red",fg="white")
         lblSearchBy.grid(row=0,column=0,sticky=W)
 
-        combo_Search=ttk.Combobox(Table_Frame,font=("arial",12,"bold"),width=24,state="randomly")
+        self.search_var=StringVar()
+        combo_Search=ttk.Combobox(Table_Frame,textvariable=self.search_var,font=("arial",12,"bold"),width=24,state="randomly")
         combo_Search["value"]=("Mobile","Ref")
         combo_Search.current(0)
         combo_Search.grid(row=0,column=1,padx=2)
 
-        txtSearch=ttk.Entry(Table_Frame,font=("arial",13,"bold"),width=24)
+        self.txt_search=StringVar()
+        txtSearch=ttk.Entry(Table_Frame,textvariable=self.txt_search,font=("arial",13,"bold"),width=24)
         txtSearch.grid(row=0,column=2,padx=2)
 
-        btnSearch=Button(Table_Frame,text="Search",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
+        btnSearch=Button(Table_Frame,text="Search",command=self.search,font=("arial",11,"bold"),bg="black",fg="gold",width=10)
         btnSearch.grid(row=0,column=3,padx=1)
 
-        btnShowAll=Button(Table_Frame,text="Show All",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
+        btnShowAll=Button(Table_Frame,text="Show All",command=self.fetch_data,font=("arial",11,"bold"),bg="black",fg="gold",width=10)
         btnShowAll.grid(row=0,column=4,padx=1)
 
         #===show data table====#
@@ -287,7 +289,7 @@ class Cust_Win:
         if mDelete>0:
             conn=mysql.connector.connect(hosts="localhost",username="root",password="Test@123",database="management")
             my_cursor=conn.cursor()
-            query="delete from customer Ref=%s"
+            query="delete from customer where Ref=%s"
             value=(self.var_ref.get(),)
             my_cursor.execute(query,value)
         else:
@@ -295,6 +297,35 @@ class Cust_Win:
                 return
         conn.commit()
         self.fetch_data()
+        conn.close()
+
+    def reset(self):
+        #self.var_ref.set(""),
+        self.var_cust_name.set(""),
+        self.var_mother.set(""),
+        #self.var_gender.set(""),
+        self.var_post.set(""),
+        self.var_mobile.set(""),
+        self.var_email.set(""),
+        #self.var_nationality.set(""),
+        #self.var_id_proof.set(""),
+        self.var_id_number.set(""),
+        self.var_address.set(""),
+        #self.var_ref=StringVar()
+        x=random.randint(1000,9999)
+        self.var_ref.set(str(x))
+
+    def search(self):
+        conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="management")
+        my_cursor=conn.cursor()
+
+        my_cursor.execute("select * from customer where"+str(self.search_var.get())+"LIKE'%"+str(self.txt_search.get())+"%'")
+        rows=my_cursor.fetchall()
+        if len (rows)!=0:
+            self.Cust_Details_Table.delete(*self.Cust_Details_Table.get_children())
+            for i in rows:
+                self.Cust_Details_Table.insert("",END,values=i)
+            conn.commit()
         conn.close()
 
 

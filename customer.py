@@ -118,7 +118,10 @@ class Cust_Win:
         btnReset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnReset.grid(row=0,column=3,padx=1)
 
-        
+        #===table frame===
+        Table_Frame=LabelFrame(self.root,bd=2,relief=RIDGE,text="View Details And Search System",font=("arial",12,"bold"),padx=2)
+        Table_Frame.place(x=435,y=50,width=860,height=490)
+
 
 
 

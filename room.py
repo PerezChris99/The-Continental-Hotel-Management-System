@@ -55,6 +55,42 @@ class Roombooking:
         combo_RoomType["value"]=("Single","Double","Laxury")
         combo_RoomType.grid(row=3,column=1)
 
+        #Available Room
+        lblRoomAvailable=Label(labelframeleft,font=("arial",12,"bold"),text="Available Room:",padx=2,pady=6)
+        lblRoomAvailable.grid(row=4,column=0,sticky=W)
+        txtRoomAvailable=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtRoomAvailable.grid(row=4,column=1)
+
+        #meal
+        lblMeal=Label(labelframeleft,font=("arial",12,"bold"),text="Meal:",padx=2,pady=6)
+        lblMeal.grid(row=5,column=0,sticky=W)
+        txtMeal=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtMeal.grid(row=5,column=1)
+
+        #Number of days
+        lblNoOfDays=Label(labelframeleft,font=("arial",12,"bold"),text="No Of Days:",padx=2,pady=6)
+        lblNoOfDays.grid(row=6,column=0,sticky=W)
+        txtNoOfDays=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtNoOfDays.grid(row=6,column=1)
+
+        #paid tax
+        lblNoOfDays=Label(labelframeleft,font=("arial",12,"bold"),text="Paid Tax:",padx=2,pady=6)
+        lblNoOfDays.grid(row=7,column=0,sticky=W)
+        txtNoOfDays=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtNoOfDays.grid(row=7,column=1)
+
+        #subtotal
+        lblNoOfDays=Label(labelframeleft,font=("arial",12,"bold"),text="Sub Total:",padx=2,pady=6)
+        lblNoOfDays.grid(row=8,column=0,sticky=W)
+        txtNoOfDays=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtNoOfDays.grid(row=8,column=1)
+
+        #total cost
+        lblIdNumber=Label(labelframeleft,font=("arial",12,"bold"),text="Total Cost:",padx=2,pady=6)
+        lblIdNumber.grid(row=9,column=0,sticky=W)
+        txtIdNumber=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtIdNumber.grid(row=9,column=1)
+
 
 
 if __name__ == "__main__":

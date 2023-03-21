@@ -12,6 +12,18 @@ class Roombooking:
         self.root.title("Hotel Management System")
         self.root.geometry("1295x550+230+220")
 
+        ##variables
+        self.var_contact=StringVar()
+        self.var_checkin=StringVar()
+        self.var_checkout=StringVar()
+        self.var_roomtype=StringVar()
+        self.var_roomavailable=StringVar()
+        self.var_meal=StringVar()
+        self.var_noofdays=StringVar()
+        self.var_paidtax=StringVar()
+        self.var_actualtotal=StringVar()
+        self.var_total=StringVar()
+
         ###title####
         lbl_title=Label(self.root,text="ROOM",font=("Times New Roman",40,"bold"),bg="black",fg="gold",bd=4,relief=RIDGE)
         lbl_title.place(x=0,y=0,width=1295,height=50)
@@ -32,67 +44,67 @@ class Roombooking:
         lbl_cust_contact=Label(labelframeleft,text="Customer Contact",font=("arial",12,"bold"),padx=2,pady=6)
         lbl_cust_contact.grid(row=0,column=0,sticky=W)
 
-        entry_contact=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=20)
+        entry_contact=ttk.Entry(labelframeleft,textvariable=self.var_contact,font=("arial",13,"bold"),width=20)
         entry_contact.grid(row=0,column=1,sticky=W)
 
         #Fetch data button
-        btnFetchData=Button(labelframeleft,text="Fetch Data",font=("arial",8,"bold"),bg="black",fg="gold",width=10)
+        btnFetchData=Button(labelframeleft,command=self.Fetch_contact,text="Fetch Data",font=("arial",8,"bold"),bg="black",fg="gold",width=10)
         btnFetchData.place(x=347,y=4)
 
         #check in date
         check_in_date=Label(labelframeleft,font=("arial",12,"bold"),text="Check_In Date:",padx=2,pady=6)
         check_in_date.grid(row=1,column=0,sticky=W)
-        txtcheck_in_date=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtcheck_in_date=ttk.Entry(labelframeleft,textvariable=self.var_checkin,font=("arial",13,"bold"),width=29)
         txtcheck_in_date.grid(row=1,column=1)
 
         #check out date
         lbl_Check_out=Label(labelframeleft,font=("arial",12,"bold"),text="Check_Out Date:",padx=2,pady=6)
         lbl_Check_out.grid(row=2,column=0,sticky=W)
-        txt_Check_out=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txt_Check_out=ttk.Entry(labelframeleft,textvariable=self.var_checkout,font=("arial",13,"bold"),width=29)
         txt_Check_out.grid(row=2,column=1)
 
         #Room type
         label_RoomType=Label(labelframeleft,font=("arial",12,"bold"),text="Room Type:",padx=2,pady=6)
         label_RoomType.grid(row=3,column=0,sticky=W)
 
-        combo_RoomType=ttk.Combobox(labelframeleft,font=("arial",12,"bold"),width=27,state="readonly")
+        combo_RoomType=ttk.Combobox(labelframeleft,textvariable=self.var_roomtype,font=("arial",12,"bold"),width=27,state="readonly")
         combo_RoomType["value"]=("Single","Double","Laxury")
         combo_RoomType.grid(row=3,column=1)
 
         #Available Room
         lblRoomAvailable=Label(labelframeleft,font=("arial",12,"bold"),text="Available Room:",padx=2,pady=6)
         lblRoomAvailable.grid(row=4,column=0,sticky=W)
-        txtRoomAvailable=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtRoomAvailable=ttk.Entry(labelframeleft,textvariable=self.var_roomavailable,font=("arial",13,"bold"),width=29)
         txtRoomAvailable.grid(row=4,column=1)
 
         #meal
         lblMeal=Label(labelframeleft,font=("arial",12,"bold"),text="Meal:",padx=2,pady=6)
         lblMeal.grid(row=5,column=0,sticky=W)
-        txtMeal=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtMeal=ttk.Entry(labelframeleft,textvariable=self.var_meal,font=("arial",13,"bold"),width=29)
         txtMeal.grid(row=5,column=1)
 
         #Number of days
         lblNoOfDays=Label(labelframeleft,font=("arial",12,"bold"),text="No Of Days:",padx=2,pady=6)
         lblNoOfDays.grid(row=6,column=0,sticky=W)
-        txtNoOfDays=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtNoOfDays=ttk.Entry(labelframeleft,textvariable=self.var_noofdays,font=("arial",13,"bold"),width=29)
         txtNoOfDays.grid(row=6,column=1)
 
         #paid tax
         lblNoOfDays=Label(labelframeleft,font=("arial",12,"bold"),text="Paid Tax:",padx=2,pady=6)
         lblNoOfDays.grid(row=7,column=0,sticky=W)
-        txtNoOfDays=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtNoOfDays=ttk.Entry(labelframeleft,textvariable=self.var_paidtax,font=("arial",13,"bold"),width=29)
         txtNoOfDays.grid(row=7,column=1)
 
         #subtotal
         lblNoOfDays=Label(labelframeleft,font=("arial",12,"bold"),text="Sub Total:",padx=2,pady=6)
         lblNoOfDays.grid(row=8,column=0,sticky=W)
-        txtNoOfDays=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtNoOfDays=ttk.Entry(labelframeleft,textvariable=self.var_actualtotal,font=("arial",13,"bold"),width=29)
         txtNoOfDays.grid(row=8,column=1)
 
         #total cost
         lblIdNumber=Label(labelframeleft,font=("arial",12,"bold"),text="Total Cost:",padx=2,pady=6)
         lblIdNumber.grid(row=9,column=0,sticky=W)
-        txtIdNumber=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtIdNumber=ttk.Entry(labelframeleft,textvariable=self.var_total,font=("arial",13,"bold"),width=29)
         txtIdNumber.grid(row=9,column=1)
 
         ##bill button
@@ -153,32 +165,38 @@ class Roombooking:
         scroll_x=ttk.Scrollbar(details_table,orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(details_table,orient=VERTICAL)
 
-        self.Cust_Details_Table=ttk.Treeview(details_table,column=("contact","checkin","checkout","roomtype","roomavailable","meal","noOfdays"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        self.room_table=ttk.Treeview(details_table,column=("contact","checkin","checkout","roomtype","roomavailable","meal","noOfdays"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
 
-        scroll_x.config(command=self.Cust_Details_Table.xview)
-        scroll_y.config(command=self.Cust_Details_Table.yview)
+        scroll_x.config(command=self.room_table.xview)
+        scroll_y.config(command=self.room_table.yview)
 
-        self.Cust_Details_Table.heading("contact",text="Contact")
-        self.Cust_Details_Table.heading("checkin",text="CheckIn")
-        self.Cust_Details_Table.heading("checkout",text="CheckOut")
-        self.Cust_Details_Table.heading("roomtype",text="Room Type")
-        self.Cust_Details_Table.heading("roomavailable",text="Room No")
-        self.Cust_Details_Table.heading("meal",text="Meal")
-        self.Cust_Details_Table.heading("noOfdays",text="NoOfDays")
+        self.room_table.heading("contact",text="Contact")
+        self.room_table.heading("checkin",text="CheckIn")
+        self.room_table.heading("checkout",text="CheckOut")
+        self.room_table.heading("roomtype",text="Room Type")
+        self.room_table.heading("roomavailable",text="Room No")
+        self.room_table.heading("meal",text="Meal")
+        self.room_table.heading("noOfdays",text="NoOfDays")
 
-        self.Cust_Details_Table["show"]="headings"
+        self.room_table["show"]="headings"
 
-        self.Cust_Details_Table.column("contact",width=100)
-        self.Cust_Details_Table.column("checkin",width=100)
-        self.Cust_Details_Table.column("checkout",width=100)
-        self.Cust_Details_Table.column("roomtype",width=100)
-        self.Cust_Details_Table.column("roomavailable",width=100)
-        self.Cust_Details_Table.column("meal",width=100)
-        self.Cust_Details_Table.column("noOfdays",width=100)
-        
-        self.Cust_Details_Table.pack(fill=BOTH,expand=1)
+        self.room_table.column("contact",width=100)
+        self.room_table.column("checkin",width=100)
+        self.room_table.column("checkout",width=100)
+        self.room_table.column("roomtype",width=100)
+        self.room_table.column("roomavailable",width=100)
+        self.room_table.column("meal",width=100)
+        self.room_table.column("noOfdays",width=100)
+        self.room_table.pack(fill=BOTH,expand=1)
+
+    def Fetch_contact(self):
+        if self.var_contact.get()=="":
+            messagebox.showerror("Error","Please enter Contact Number")
+
+    
+
 
 if __name__ == "__main__":
     root=Tk()

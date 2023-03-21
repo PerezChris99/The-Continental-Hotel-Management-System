@@ -235,7 +235,7 @@ class Cust_Win:
     def fetch_data(self):
         conn=mysql.connector.connect(host="localhost",username="root",passwords="Test@123",database="continental")
         my_cursor=conn.cursor()
-        my_cursor.execute("select + from customer")
+        my_cursor.execute("select * from customer")
         rows=my_cursor.fetchall()
         if len(rows)!=0:
             self.Cust_Details_Table.delete(*self.Cust_Details_Table.get_children())

@@ -115,7 +115,7 @@ class Roombooking:
         btn_frame=Frame(labelframeleft,bd=2,relief=RIDGE)
         btn_frame.place(x=0,y=400,width=412,height=40)
 
-        btnAdd=Button(btn_frame,text="Add",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnAdd=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnAdd.grid(row=0,column=0,padx=1)
 
         btnUpdate=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
@@ -190,6 +190,82 @@ class Roombooking:
         self.room_table.column("meal",width=100)
         self.room_table.column("noOfdays",width=100)
         self.room_table.pack(fill=BOTH,expand=1)
+        self.room_table.bind("<ButtonRelease-1>",self.get_cursor)
+        self.fetch_data()
+
+#add data
+    def add_data(self):
+        if self.var_contact.get()=="" or self.var_checkin.get()=="":
+            messagebox.showerror("Error","All fields are reqired",parent=self.root)
+        else:
+            try:
+                conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="continental")
+                my_cursor=conn.cursor()
+                my_cursor.execute("Insert into room values(%s,%s,%s,%s,%s,%s,%s)",(
+                                                                                        self.var_contact.get(),
+                                                                                        self.var_checkin.get(),
+                                                                                        self.var_checkout.get(),
+                                                                                        self.var_roomtype.get(),
+                                                                                        self.var_roomavailable.get(),
+                                                                                        self.var_meal.get(),
+                                                                                        self.var_noofdays.get()             
+                                                                                        ))
+                conn.commit()
+                self.fetch_data()
+                conn.close()
+                messagebox.showinfo("success","customer has been added",parent=self.root)
+            except Exception as es:
+                messagebox.showwarning("Warning",f"Something went wrong:{str(es)}",parent=self.root)
+
+    #fetch data##
+
+    def fetch_data(self):
+        conn=mysql.connector.connect(host="localhost",username="root",passwords="Test@123",database="continental")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select * from room")
+        rows=my_cursor.fetchall()
+        if len(rows)!=0:
+            self.room_table.delete(*self.room_table.get_children())
+            for i in rows:
+                self.room_table.insert("",END,values=i)
+            conn.commit()
+        connclose()
+
+    #get cursor
+    def get_cursor(self,event=""):
+        cursor_row=self.room_table.focus()
+        content=self.room_table.item(cursor_row)
+        row=content["values"]
+
+        self.var_contact.set(row[0]),
+        self.var_checkin.set(row[1]),
+        self.var_checkout.set(row[2]),
+        self.var_roomtype.set(row[3]),
+        self.var_roomavailable.set(row[4]),
+        self.var_meal.set(row[5]),
+        self.var_noofdays.set(row[6])
+        
+    #update function
+    def update(self):
+        if self.var_contact.get()=="":
+            messagebox.showerror("Error","Please enter mobile number",parent=self.root)
+        else:
+            conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="management")
+            my_cursor=conn.cursor()
+            my_cursor.execute("update room set check_in=%s,check_out=%s,roomtype=%s,roomavailable=%s,meal=%s,noOfdays=%s,where Contact=%s",(
+                                                                                                                                                        self.var_checkin.get(),
+                                                                                                                                                        self.var_checkout.get(),
+                                                                                                                                                        self.var_roomtype.get(),
+                                                                                                                                                        self.var_roomavailable.get(),
+                                                                                                                                                        self.var_meal.get(),
+                                                                                                                                                        self.var_noofdays.get(),
+                                                                                                                                                        self.var_contact.get(),
+                                                                                                                                                        ))
+            conn.commit()
+            self.fetch_data()
+            conn.close()
+            messagebox.showinfo("Update","Room details have been updated successfully",parent=self.root)
+    
 
     ####all data fetch######
 
@@ -274,6 +350,7 @@ class Roombooking:
 
                 lbl2=Label(showDataframe,text=row,font=("arial",12,"bold"))
                 lbl2.place(x=90,y=120)
+
 
 if __name__ == "__main__":
     root=Tk()

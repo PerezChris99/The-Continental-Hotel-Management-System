@@ -2,6 +2,8 @@ from tkinter import*
 from PIL import Image,ImageTk
 from tkinter import ttk
 import random
+from time import strftime
+from datetime import datetime
 #import mysql.connector
 from tkinter import messagebox
 
@@ -108,7 +110,7 @@ class Roombooking:
         txtIdNumber.grid(row=9,column=1)
 
         ##bill button
-        btnBill=Button(labelframeleft,text="Bill",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
+        btnBill=Button(labelframeleft,text="Bill",command=self.total,font=("arial",11,"bold"),bg="black",fg="gold",width=10)
         btnBill.grid(row=10,column=0,padx=1,sticky=W)
 
         ###btns####
@@ -121,10 +123,10 @@ class Roombooking:
         btnUpdate=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnUpdate.grid(row=0,column=1,padx=1)
 
-        btnDelete=Button(btn_frame,text="Delete",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnDelete=Button(btn_frame,text="Delete",command=self.mDelete,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnDelete.grid(row=0,column=2,padx=1)
 
-        btnReset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnReset=Button(btn_frame,text="Reset",command=self.reset,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnReset.grid(row=0,column=3,padx=1)
 
         ###rightside image##
@@ -266,6 +268,34 @@ class Roombooking:
             conn.close()
             messagebox.showinfo("Update","Room details have been updated successfully",parent=self.root)
     
+    #delete####
+    def mDelete(self):
+        mDelete=messagebox.askyesno("Hotel Management System","Do you want to delete this room",parent=self.root)
+        if mDelete>0:
+            conn=mysql.connector.connect(hosts="localhost",username="root",password="Test@123",database="management")
+            my_cursor=conn.cursor()
+            query="delete from room where Contant=%s"
+            value=(self.var_contact.get(),)
+            my_cursor.execute(query,value)
+        else:
+            if not mDelete:
+                return
+        conn.commit()
+        self.fetch_data()
+        conn.close()
+
+    def reset(self):
+        self.var_contact.set(""),
+        self.var_checkin.set(""),
+        self.var_checkout.set(""),
+        self.var_roomtype.set(""),
+        self.var_roomavailable.set(""),
+        self.var_meal.set(""),
+        self.var_noofdays.set("")
+        self.var_paidtax.set()
+        self.var_actualtotal.set()
+        self.var_total.set()
+
 
     ####all data fetch######
 
@@ -350,6 +380,39 @@ class Roombooking:
 
                 lbl2=Label(showDataframe,text=row,font=("arial",12,"bold"))
                 lbl2.place(x=90,y=120)
+
+    def total(self):
+        inDate=self.var_checkin.get()
+        outDate=self.var_checkout.get()
+        inDate=datetime.strptime(inDate, "%d/%m/%Y")
+        outDate=datetime.strptime(outDate, "%d/%m/%Y")
+        self.var_noofdays.set(abs(outDate-inDate).days)
+
+        if (self.var_meal.get()=="Breakfast" and self.var_roomtype.get()=="laxury"):
+            q1=float(300)
+            q2=float(700)
+            q3=float(self.var_noofdays.get())
+            q4=float(q1+q2)
+            q5=float(q3+q4)
+            Tax="Rs. "+str("%.2f"%((q5)*0.1))
+            ST="Rs. "+str("%.2f"%((q5)))
+            TT="Rs. "+str("%.2f"%((q5)*0.1))
+            self.var_paidtax.set(Tax)
+            self.var_actualtotal.set(ST)
+            self.var_total.set(TT)
+
+        elif (self.var_meal.get()=="Lunch" and self.var_roomtype.get()=="Single"):
+            q1=float(300)
+            q2=float(700)
+            q3=float(self.var_noofdays.get())
+            q4=float(q1+q2)
+            q5=float(q3+q4)
+            Tax="Rs. "+str("%.2f"%((q5)*0.1))
+            ST="Rs. "+str("%.2f"%((q5)))
+            TT="Rs. "+str("%.2f"%((q5)*0.1))
+            self.var_paidtax.set(Tax)
+            self.var_actualtotal.set(ST)
+            self.var_total.set(TT)
 
 
 if __name__ == "__main__":

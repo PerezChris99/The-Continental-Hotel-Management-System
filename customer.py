@@ -328,7 +328,6 @@ class Cust_Win:
             conn.commit()
         conn.close()
 
-
 if __name__ == "__main__":
     root=Tk()
     obj=Cust_Win(root)

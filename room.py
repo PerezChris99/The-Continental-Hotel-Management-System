@@ -48,6 +48,13 @@ class Roombooking:
         txt_Check_out.grid(row=2,column=1)
 
         #Room type
+        label_RoomType=Label(labelframeleft,font=("arial",12,"bold"),text="Room Type:",padx=2,pady=6)
+        label_RoomType.grid(row=3,column=0,sticky=W)
+
+        combo_RoomType=ttk.Combobox(labelframeleft,font=("arial",12,"bold"),width=27,state="readonly")
+        combo_RoomType["value"]=("Single","Double","Laxury")
+        combo_RoomType.grid(row=3,column=1)
+
 
 
 if __name__ == "__main__":

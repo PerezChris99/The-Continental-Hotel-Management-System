@@ -28,6 +28,27 @@ class Roombooking:
         labelframeleft=LabelFrame(self.root,bd=2,relief=RIDGE,text="Room BookingDetails",font=("arial",12,"bold"),padx=2,)
         labelframeleft.place(x=5,y=50,width=425,height=490)
 
+        #customer contact##
+        lbl_cust_contact=Label(labelframeleft,text="Customer Contact",font=("arial",12,"bold"),padx=2,pady=6)
+        lbl_cust_contact.grid(row=0,column=0,sticky=W)
+
+        entry_contact=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29,state="readonly")
+        entry_contact.grid(row=0,column=1)
+
+        #check in date
+        check_in_date=Label(labelframeleft,font=("arial",12,"bold"),text="Check_In Date:",padx=2,pady=6)
+        check_in_date.grid(row=1,column=0,sticky=W)
+        txtcheck_in_date=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txtcheck_in_date.grid(row=1,column=1)
+
+        #check out date
+        lbl_Check_out=Label(labelframeleft,font=("arial",12,"bold"),text="Check_Out Date:",padx=2,pady=6)
+        lbl_Check_out.grid(row=2,column=0,sticky=W)
+        txt_Check_out=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=29)
+        txt_Check_out.grid(row=2,column=1)
+
+        #Room type
+
 
 if __name__ == "__main__":
     root=Tk()

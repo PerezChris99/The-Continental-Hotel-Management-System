@@ -34,28 +34,31 @@ class RoomDetails:
         lbl_floor=Label(labelframeleft,text="Floor",font=("arial",12,"bold"),padx=2,pady=6)
         lbl_floor.grid(row=0,column=0,sticky=W)
 
-        entry_floor=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=20)
+        self.var_floor=StringVar()
+        entry_floor=ttk.Entry(labelframeleft,textvariable=self.var_floor,font=("arial",13,"bold"),width=20)
         entry_floor.grid(row=0,column=1,sticky=W)
 
         #Room Number##
         lbl_RoomNo=Label(labelframeleft,text="Room No",font=("arial",12,"bold"),padx=2,pady=6)
         lbl_RoomNo.grid(row=1,column=0,sticky=W)
 
-        entry_RoomNo=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=20)
+        self.var_roomNo=StringVar()
+        entry_RoomNo=ttk.Entry(labelframeleft,textvariable=self.var_roomNo,font=("arial",13,"bold"),width=20)
         entry_RoomNo.grid(row=1,column=1,sticky=W)
 
         #Room Type##
         lbl_RoomType=Label(labelframeleft,text="Room Type",font=("arial",12,"bold"),padx=2,pady=6)
         lbl_RoomType.grid(row=2,column=0,sticky=W)
 
-        entry_RoomType=ttk.Entry(labelframeleft,font=("arial",13,"bold"),width=20)
+        self.var_RoomType=StringVar()
+        entry_RoomType=ttk.Entry(labelframeleft,textvariable=self.var_RoomType,font=("arial",13,"bold"),width=20)
         entry_RoomType.grid(row=2,column=1,sticky=W)
 
         ###btns####
         btn_frame=Frame(labelframeleft,bd=2,relief=RIDGE)
         btn_frame.place(x=0,y=200,width=412,height=40)
 
-        btnAdd=Button(btn_frame,text="Add",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnAdd=Button(btn_frame,text="Add",command=self.add_data,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnAdd.grid(row=0,column=0,padx=1)
 
         btnUpdate=Button(btn_frame,text="Update",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
@@ -73,31 +76,45 @@ class RoomDetails:
 
         scroll_x=ttk.Scrollbar(Table_Frame,orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(Table_Frame,orient=VERTICAL)
-        self.room_table=ttk.Treeview(Table_Frame,column=("contact","checkin","checkout","roomtype","roomavailable","meal","noOfdays"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        self.room_table=ttk.Treeview(Table_Frame,column=("floor","roomno","roomType"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
         scroll_x.config(command=self.room_table.xview)
         scroll_y.config(command=self.room_table.yview)
 
 
-        self.room_table.heading("contact",text="Contact")
-        self.room_table.heading("checkin",text="CheckIn")
-        self.room_table.heading("checkout",text="CheckOut")
-        self.room_table.heading("roomtype",text="Room Type")
-        self.room_table.heading("roomavailable",text="Room No")
-        self.room_table.heading("meal",text="Meal")
-        self.room_table.heading("noOfdays",text="NoOfDays")
+        self.room_table.heading("floor",text="Floor")
+        self.room_table.heading("roomno",text="Room No")
+        self.room_table.heading("roomType",text="Room Type")
 
         self.room_table["show"]="headings"
 
-        self.room_table.column("contact",width=100)
-        self.room_table.column("checkin",width=100)
-        self.room_table.column("checkout",width=100)
-        self.room_table.column("roomtype",width=100)
-        self.room_table.column("roomavailable",width=100)
-        self.room_table.column("meal",width=100)
-        self.room_table.column("noOfdays",width=100)
+        self.room_table.column("floor",width=100)
+        self.room_table.column("roomno",width=100)
+        self.room_table.column("roomType",width=100)
+    
         self.room_table.pack(fill=BOTH,expand=1)
+
+
+    def add_data(self):
+        if self.var_floor.get()=="" or self.var_RoomType.get()=="":
+            messagebox.showerror("Error","All fields are reqired",parent=self.root)
+        else:
+            try:
+                conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="continental")
+                my_cursor=conn.cursor()
+                my_cursor.execute("Insert into details values(%s,%s,%s,%s,%s,%s,%s)",(
+                                                                                        self.var_floor.get(),
+                                                                                        self.var_roomNo.get(),
+                                                                                        self.var_RoomType.get(),           
+                                                                                        ))
+                conn.commit()
+                self.fetch_data()
+                conn.close()
+                messagebox.showinfo("success", "Room addedd successfully",parent=self.root)
+            except Exception as es:
+                messagebox.showwarning("Warning",f"Something went wrong:{str(es)}",parent=self.root)
+
         
 
 if __name__=="__main__":

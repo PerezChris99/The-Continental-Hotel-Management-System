@@ -6,8 +6,6 @@ from time import strftime
 from datetime import datetime
 #import mysql.connector
 from tkinter import messagebox
-
-
 class Roombooking:
     def __init__(self,root):
         self.root = root
@@ -129,15 +127,12 @@ class Roombooking:
         btnReset=Button(btn_frame,text="Reset",command=self.reset,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnReset.grid(row=0,column=3,padx=1)
 
-
-
         ###rightside image##
         img3=Image.open(r"images/img1.jpg")
         img3=img3.resize((520,300),Image.ANTIALIAS)
         self.photoimg3=ImageTk.PhotoImage(img3)
         lbling=Label(self.root,image=self.photoimg3,bd=0,relief=RIDGE)
         lbling.place(x=760,y=55,width=520,height=200)
-
 
         #===table frame search system===
         Table_Frame=LabelFrame(self.root,bd=2,relief=RIDGE,text="View Details And Search System",font=("arial",12,"bold"),padx=2)
@@ -298,7 +293,6 @@ class Roombooking:
         self.var_actualtotal.set()
         self.var_total.set()
 
-
     ####all data fetch######
 
     def Fetch_contact(self):
@@ -397,7 +391,6 @@ class Roombooking:
             conn.commit()
         conn.close()
 
-
     def total(self):
         inDate=self.var_checkin.get()
         outDate=self.var_checkout.get()
@@ -430,8 +423,6 @@ class Roombooking:
             self.var_paidtax.set(Tax)
             self.var_actualtotal.set(ST)
             self.var_total.set(TT)
-
- 
 
 if __name__ == "__main__":
     root=Tk()

@@ -5,7 +5,6 @@ import random
 #import mysql.connector
 from tkinter import messagebox
 
-
 class Cust_Win:
     def __init__(self,root):
         self.root = root
@@ -108,7 +107,6 @@ class Cust_Win:
         combo_id["value"]=("Bank Card","Driving License", "National ID", "Passport", "Other")
         combo_id.current(0)
         combo_id.grid(row=8, column=1)
-
 
         #id number
         lblIdNumber=Label(labelframeleft,font=("arial",12,"bold"),text="Id Number:",padx=2,pady=6)
@@ -267,7 +265,6 @@ class Cust_Win:
             conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="management")
             my_cursor=conn.cursor()
             my_cursor.execute("update customer set Name=%s,Mother=%s,Gender=%s,PostCode=%s,Mobile=%s,Email=%s,Nationality=%s,Idproof=%s,idnumber=%s,Address=%s,where Ref=%s",(
-                                                                                                                                                        
                                                                                                                                                         self.var_cust_name.get(),
                                                                                                                                                         self.var_mother.get(),
                                                                                                                                                         self.var_gender.get(),

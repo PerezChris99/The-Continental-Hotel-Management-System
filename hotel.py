@@ -64,7 +64,6 @@ class HotelManagementSystem:
         Ibling1=Label(self.root,image=self.photoimg3,bd=4,relief=RIDGE)
         Ibling1.place(x=225,y=0, width=1310,height=590)
 
-
         ##lower images##
         img4=Image.open(r"images/lower1.jpg")
         img4=img4.resize((230, 210),Image.ANTIALIAS)

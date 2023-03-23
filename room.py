@@ -67,8 +67,14 @@ class Roombooking:
         label_RoomType=Label(labelframeleft,font=("arial",12,"bold"),text="Room Type:",padx=2,pady=6)
         label_RoomType.grid(row=3,column=0,sticky=W)
 
+        conn=mysql.connector.connect(host="localhost",username="root",passwords="Test@123",database="continental")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select RoomTypefrom details")
+        ide=my_cursor.fetchall()
+
         combo_RoomType=ttk.Combobox(labelframeleft,textvariable=self.var_roomtype,font=("arial",12,"bold"),width=27,state="readonly")
-        combo_RoomType["value"]=("Single","Double","Laxury")
+        combo_RoomType["value"]=ide
+        combo_RoomType.current(0)
         combo_RoomType.grid(row=3,column=1)
 
         #Available Room
@@ -76,10 +82,15 @@ class Roombooking:
         lblRoomAvailable.grid(row=4,column=0,sticky=W)
         #txtRoomAvailable=ttk.Entry(labelframeleft,textvariable=self.var_roomavailable,font=("arial",13,"bold"),width=29)
         #txtRoomAvailable.grid(row=4,column=1)
-        combo_RoomNo=ttk.Combobox(labelframeleft,textvariable=self.var_roomtype,font=("arial",12,"bold"),width=27,state="readonly")
-        combo_RoomNo["value"]=("Single","Double","Laxury")
+        conn=mysql.connector.connect(host="localhost",username="root",passwords="Test@123",database="continental")
+        my_cursor=conn.cursor()
+        my_cursor.execute("select RoomNo from details")
+        rows=my_cursor.fetchall()
+
+        combo_RoomNo=ttk.Combobox(labelframeleft,textvariable=self.var_roomavailable,font=("arial",12,"bold"),width=27,state="readonly")
+        combo_RoomNo["value"]=rows
         combo_RoomNo.current(0)
-        combo_RoomNo.grid(row=3,column=1)
+        combo_RoomNo.grid(row=4,column=1)
 
         #meal
         lblMeal=Label(labelframeleft,font=("arial",12,"bold"),text="Meal:",padx=2,pady=6)
@@ -427,6 +438,20 @@ class Roombooking:
             self.var_actualtotal.set(ST)
             self.var_total.set(TT)
 
+        elif (self.var_meal.get()=="Breakfast" and self.var_roomtype.get()=="Duplex"):
+            q1=float(500)
+            q2=float(1000)
+            q3=float(self.var_noofdays.get())
+            q4=float(q1+q2)
+            q5=float(q3+q4)
+            Tax="Rs. "+str("%.2f"%((q5)*0.1))
+            ST="Rs. "+str("%.2f"%((q5)))
+            TT="Rs. "+str("%.2f"%((q5)*0.1))
+            self.var_paidtax.set(Tax)
+            self.var_actualtotal.set(ST)
+            self.var_total.set(TT)
+
+            
 if __name__ == "__main__":
     root=Tk()
     obj=Roombooking(root)

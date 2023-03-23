@@ -74,8 +74,12 @@ class Roombooking:
         #Available Room
         lblRoomAvailable=Label(labelframeleft,font=("arial",12,"bold"),text="Available Room:",padx=2,pady=6)
         lblRoomAvailable.grid(row=4,column=0,sticky=W)
-        txtRoomAvailable=ttk.Entry(labelframeleft,textvariable=self.var_roomavailable,font=("arial",13,"bold"),width=29)
-        txtRoomAvailable.grid(row=4,column=1)
+        #txtRoomAvailable=ttk.Entry(labelframeleft,textvariable=self.var_roomavailable,font=("arial",13,"bold"),width=29)
+        #txtRoomAvailable.grid(row=4,column=1)
+        combo_RoomNo=ttk.Combobox(labelframeleft,textvariable=self.var_roomtype,font=("arial",12,"bold"),width=27,state="readonly")
+        combo_RoomNo["value"]=("Single","Double","Laxury")
+        combo_RoomNo.current(0)
+        combo_RoomNo.grid(row=3,column=1)
 
         #meal
         lblMeal=Label(labelframeleft,font=("arial",12,"bold"),text="Meal:",padx=2,pady=6)

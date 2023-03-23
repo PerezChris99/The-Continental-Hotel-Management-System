@@ -67,7 +67,7 @@ class RoomDetails:
         btnDelete=Button(btn_frame,text="Delete",command=self.mDelete,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnDelete.grid(row=0,column=2,padx=1)
 
-        btnReset=Button(btn_frame,text="Reset",font=("arial",12,"bold"),bg="black",fg="gold",width=8)
+        btnReset=Button(btn_frame,text="Reset",command=self.reset_data,font=("arial",12,"bold"),bg="black",fg="gold",width=8)
         btnReset.grid(row=0,column=3,padx=1)
 
         #===table frame search system===
@@ -155,7 +155,7 @@ class RoomDetails:
             conn.commit()
             self.fetch_data()
             conn.close()
-            messagebox.showinfo("Update","New Room details have been updated successfully",parent=self.root)
+            messagebox.showinfo("Success","New Room details have been updated successfully",parent=self.root)
     
     #delete####
     def mDelete(self):
@@ -172,6 +172,12 @@ class RoomDetails:
         conn.commit()
         self.fetch_data()
         conn.close()
+
+
+    def reset_data(self):
+        self.var_floor.set(""),
+        self.var_roomNo.set(""),
+        self.var_RoomType.set("")
 
 if __name__=="__main__":
     root=Tk()

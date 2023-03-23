@@ -163,11 +163,9 @@ class Roombooking:
 
         scroll_x=ttk.Scrollbar(details_table,orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(details_table,orient=VERTICAL)
-
         self.room_table=ttk.Treeview(details_table,column=("contact","checkin","checkout","roomtype","roomavailable","meal","noOfdays"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
-
         scroll_x.config(command=self.room_table.xview)
         scroll_y.config(command=self.room_table.yview)
 
@@ -189,6 +187,7 @@ class Roombooking:
         self.room_table.column("meal",width=100)
         self.room_table.column("noOfdays",width=100)
         self.room_table.pack(fill=BOTH,expand=1)
+
         self.room_table.bind("<ButtonRelease-1>",self.get_cursor)
         self.fetch_data()
 
@@ -271,7 +270,7 @@ class Roombooking:
         if mDelete>0:
             conn=mysql.connector.connect(hosts="localhost",username="root",password="Test@123",database="management")
             my_cursor=conn.cursor()
-            query="delete from room where Contant=%s"
+            query="delete from room where Contact=%s"
             value=(self.var_contact.get(),)
             my_cursor.execute(query,value)
         else:
